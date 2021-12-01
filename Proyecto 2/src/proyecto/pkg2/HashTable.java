@@ -100,11 +100,11 @@ public class HashTable {
         String texto = "";
         for (int i = 0; i < tamano; i++) {
             if (this.tabla[i] != null) {
-                texto += "Palabra \"" + this.tabla[i].getNombre() + "\" del texto: " + this.tabla[i].getCount() + "\n";
+                texto += "\"" + this.tabla[i].getNombre() + "\" : " + this.tabla[i].getCount() + "\n";
                 cuenta += this.tabla[i].getCount();
                 NodoHash temp = this.tabla[i].getSiguiente();
                 while (temp != null) {
-                    texto += "*" + "Palabra \"" + temp.getNombre() + "\" del texto: " + temp.getCount() + "\n";
+                    texto += "*" + "\"" + temp.getNombre() + "\": " + temp.getCount() + "\n";
                     cuenta += this.tabla[i].getCount();
                     temp = temp.getSiguiente();
 

@@ -8,6 +8,7 @@ package Interfaz;
 import javax.swing.JOptionPane;
 import proyecto.pkg2.Funciones;
 import proyecto.pkg2.HashTable;
+import proyecto.pkg2.NodoHash;
 
 /**
  *
@@ -29,7 +30,7 @@ public class Principal extends javax.swing.JFrame {
         f = new Funciones();
         hashTable = new HashTable(10111);
         archivo = false;
-       
+
     }
 
     /**
@@ -44,7 +45,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         leerDocumento = new javax.swing.JButton();
         contarRep = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        buscarPalabra = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
@@ -69,8 +70,13 @@ public class Principal extends javax.swing.JFrame {
         });
         jPanel1.add(contarRep, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 160, -1));
 
-        jButton3.setText("Buscar palabra");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 160, -1));
+        buscarPalabra.setText("Buscar palabra");
+        buscarPalabra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarPalabraActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buscarPalabra, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 160, -1));
 
         jButton4.setText("Verificar originalidad");
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 160, -1));
@@ -91,7 +97,7 @@ public class Principal extends javax.swing.JFrame {
             for (int i = 0; i < array.length; i++) {
                 System.out.println("----");
                 System.out.println(array[i]);
-                hashTable.insertar(array[i].replace("\n","").replace(" ", ""));
+                hashTable.insertar(array[i].replace("\n", "").replace(" ", ""));
             }
 
         } else {
@@ -104,13 +110,28 @@ public class Principal extends javax.swing.JFrame {
 
             String repeticiones = hashTable.repeticiones();
             Repeticiones rep = new Repeticiones(repeticiones);
-            
-            
+
             //JOptionPane.showMessageDialog(null, repeticiones);
         } else {
             JOptionPane.showMessageDialog(null, "No se ha cargado ningún documento");
         }
     }//GEN-LAST:event_contarRepActionPerformed
+
+    private void buscarPalabraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPalabraActionPerformed
+        if (archivo) {
+
+            String palabra = JOptionPane.showInputDialog("Ingrese la palabra que quiere buscar: ");
+            NodoHash buscado = hashTable.buscar(palabra);
+            JOptionPane.showMessageDialog(null, "\"" + buscado.getNombre() + "\" : " + buscado.getCount());
+
+        } else {
+            JOptionPane.showMessageDialog(null, "No se ha cargado ningún documento");
+        }
+
+        
+
+       
+    }//GEN-LAST:event_buscarPalabraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,8 +169,8 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buscarPalabra;
     private javax.swing.JButton contarRep;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JPanel jPanel1;
