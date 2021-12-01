@@ -12,12 +12,13 @@ package proyecto.pkg2;
 public class NodoHash {
 
     private NodoHash siguiente;
-    private String nombre;
+    private NodoHash siguienteLista;
+    private String palabra;
     private int count;
 
     public NodoHash(String palabra) {
         this.siguiente = null;
-        this.nombre = palabra;
+        this.palabra = palabra;
         this.count = 1;
     }
 
@@ -29,12 +30,12 @@ public class NodoHash {
         this.siguiente = siguiente;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getPalabra() {
+        return palabra;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setPalabra(String nombre) {
+        this.palabra = nombre;
     }
 
     public int getCount() {
@@ -44,6 +45,14 @@ public class NodoHash {
     public void addCount() {
         this.count++;
     }
-    
+
+    public NodoHash getSiguienteLista() {
+        return siguienteLista;
+    }
+
+    public void setSiguienteLista(NodoHash siguienteLista) {
+        this.siguienteLista = siguienteLista;
+    }
+        
 
 }

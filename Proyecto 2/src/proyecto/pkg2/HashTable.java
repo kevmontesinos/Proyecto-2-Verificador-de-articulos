@@ -13,7 +13,7 @@ public class HashTable {
 
     NodoHash[] tabla;
     int tamano; //n primo, mientras más pequeño más colisiones pueden ocurrir
-    int cuenta = 0;
+    
 
     public HashTable(int tamano) {
         this.tamano = tamano;
@@ -41,20 +41,20 @@ public class HashTable {
         return (valor % tamano);
     }
 
-    public void insertar(String palabra) {
+    public void insertar(String palabra, ListaEnlazada lista) {
         int posicion = hashing(palabra);
         boolean existe = false;
 
         if (this.tabla[posicion] != null) {
 
             NodoHash temp = this.tabla[posicion];
-            if (temp.getNombre().equals(palabra)) {
+            if (temp.getPalabra().equals(palabra)) {
                 existe = true;
                 temp.addCount();
             }
             while (temp.getSiguiente() != null) {
                 temp = temp.getSiguiente();
-                if (temp.getNombre().equals(palabra)) {
+                if (temp.getPalabra().equals(palabra)) {
                     existe = true;
                     temp.addCount();
 
@@ -63,11 +63,13 @@ public class HashTable {
             if (!existe) {
                 NodoHash nuevo = new NodoHash(palabra);
                 temp.setSiguiente(nuevo);
+                lista.agregarFinal(nuevo);
 
             }
         } else {
             NodoHash nuevo = new NodoHash(palabra);
             this.tabla[posicion] = nuevo;
+            lista.agregarFinal(nuevo);
 
         }
     }
@@ -81,7 +83,7 @@ public class HashTable {
                 existe = true;
             } else {
                 while (temp.getSiguiente() != null && !existe) {
-                    if (temp.getNombre().equals(palabra)) {
+                    if (temp.getPalabra().equals(palabra)) {
                         existe = true;
                     } else {
                         temp = temp.getSiguiente();
@@ -96,24 +98,27 @@ public class HashTable {
         }
     }
 
-    public String repeticiones() {
-        String texto = "";
-        for (int i = 0; i < tamano; i++) {
-            if (this.tabla[i] != null) {
-                texto += "\"" + this.tabla[i].getNombre() + "\" : " + this.tabla[i].getCount() + "\n";
-                cuenta += this.tabla[i].getCount();
-                NodoHash temp = this.tabla[i].getSiguiente();
-                while (temp != null) {
-                    texto += "*" + "\"" + temp.getNombre() + "\": " + temp.getCount() + "\n";
-                    cuenta += this.tabla[i].getCount();
-                    temp = temp.getSiguiente();
-
-                }
-
-            }
-        }
-        System.out.println("Cuenta " + cuenta);
-        return texto;
-    }
+//    public String repeticiones() {
+//        String texto = "";
+//        int cuenta = 0;
+//        for (int i = 0; i < tamano; i++) {
+//            if (this.tabla[i] != null) {
+//                texto += "\"" + this.tabla[i].getPalabra() + "\" : " + this.tabla[i].getCount() + "\n";
+//                cuenta += this.tabla[i].getCount();
+//                System.out.println(cuenta);
+//                NodoHash temp = this.tabla[i].getSiguiente();
+//                while (temp != null) {
+//                    texto += "*" + "\"" + temp.getPalabra()+ "\": " + temp.getCount() + "\n";
+//                    cuenta += this.tabla[i].getCount();
+//                    System.out.println(cuenta);
+//                    temp = temp.getSiguiente();
+//
+//                }
+//
+//            }
+//        }
+//        System.out.println("Cuenta " + cuenta);
+//        return texto;
+//    }
 
 }
