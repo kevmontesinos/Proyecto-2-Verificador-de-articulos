@@ -5,7 +5,6 @@ package proyecto.pkg2;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Kevin
@@ -14,6 +13,7 @@ public class HashTable {
 
     NodoHash[] tabla;
     int tamano; //n primo, mientras más pequeño más colisiones pueden ocurrir
+    int cuenta = 0;
 
     public HashTable(int tamano) {
         this.tamano = tamano;
@@ -40,55 +40,80 @@ public class HashTable {
         }
         return (valor % tamano);
     }
-    
-    public void insertar (String nombre) {
-        int posicion = hashing(nombre);
-        boolean existe = false;     
-        
-        if (this.tabla[posicion] != null){
-            
+
+    public void insertar(String palabra) {
+        int posicion = hashing(palabra);
+        boolean existe = false;
+
+        if (this.tabla[posicion] != null) {
+
             NodoHash temp = this.tabla[posicion];
-            if (temp.getNombre().equals(nombre)){
+            if (temp.getNombre().equals(palabra)) {
                 existe = true;
+                temp.addCount();
             }
-            while (temp.getSiguiente() != null){
+            while (temp.getSiguiente() != null) {
                 temp = temp.getSiguiente();
-                if (temp.getNombre().equals(nombre)){
+                if (temp.getNombre().equals(palabra)) {
                     existe = true;
+                    temp.addCount();
+
                 }
             }
-            if (!existe){
-                NodoHash nuevo = new NodoHash(nombre);
+            if (!existe) {
+                NodoHash nuevo = new NodoHash(palabra);
                 temp.setSiguiente(nuevo);
+
             }
-        }else{
-            NodoHash nuevo = new NodoHash (nombre);
+        } else {
+            NodoHash nuevo = new NodoHash(palabra);
             this.tabla[posicion] = nuevo;
+
         }
     }
-    
-    public NodoHash buscar(String nombre){
-        int posicion = hashing(nombre);
+
+    public NodoHash buscar(String palabra) {
+        int posicion = hashing(palabra);
         NodoHash temp = this.tabla[posicion];
         boolean existe = false;
-        if (temp != null){
-            if (temp.getSiguiente() == null){
+        if (temp != null) {
+            if (temp.getSiguiente() == null) {
                 existe = true;
-            }else{
-                while (temp.getSiguiente() != null && !existe){
-                    if (temp.getNombre().equals(nombre)){
+            } else {
+                while (temp.getSiguiente() != null && !existe) {
+                    if (temp.getNombre().equals(palabra)) {
                         existe = true;
-                    }else{
+                    } else {
                         temp = temp.getSiguiente();
                     }
                 }
             }
         }
-        if (existe){
+        if (existe) {
             return temp;
-        }else{
+        } else {
             return null;
         }
+    }
+
+    public String repeticiones() {
+        String texto = "";
+        for (int i = 0; i < tamano; i++) {
+            if (this.tabla[i] != null) {
+                texto += "Palabra \"" + this.tabla[i].getNombre() + "\" del texto: " + this.tabla[i].getCount() + "\n";
+                cuenta += this.tabla[i].getCount();
+                NodoHash temp = this.tabla[i].getSiguiente();
+                while (temp != null) {
+                    texto += "*" + "Palabra \"" + temp.getNombre() + "\" del texto: " + temp.getCount() + "\n";
+                    cuenta += this.tabla[i].getCount();
+                    temp = temp.getSiguiente();
+
+                }
+
+            }
+        }
+        System.out.println("Cuenta " + cuenta);
+        return texto;
     }
 
 }
