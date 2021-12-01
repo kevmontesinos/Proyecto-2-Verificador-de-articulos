@@ -50,10 +50,8 @@ public class Funciones {
    
 
     public String[] soloPalabrasArray(String texto) {
-        System.out.println(texto);
         
         texto = texto.replace(",", "").replace(".", "").replace("(", "").replace(")", "").toLowerCase();
-        System.out.println(texto);
         texto.replace('á', 'a').replace('é', 'e').replace('í', 'i').replace('ó', 'o').replace('ú', 'u');
                
 

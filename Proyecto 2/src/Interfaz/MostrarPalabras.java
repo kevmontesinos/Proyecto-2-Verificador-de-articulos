@@ -9,12 +9,12 @@ package Interfaz;
  *
  * @author Kevin
  */
-public class Repeticiones extends javax.swing.JFrame {
+public class MostrarPalabras extends javax.swing.JFrame {
 
     /**
      * Creates new form Repeticiones
      */
-    public Repeticiones(String texto) {
+    public MostrarPalabras(String texto) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);

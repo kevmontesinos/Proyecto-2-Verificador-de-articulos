@@ -31,6 +31,10 @@ public class ListaEnlazada {
         return primero == null;
     }
 
+    public NodoHash getPrimero() {
+        return primero;
+    }
+
     public void agregarInicio(NodoHash nuevo) {
 
         if (esVacio()) {
@@ -55,25 +59,78 @@ public class ListaEnlazada {
         tamano++;
     }
 
+    public void ordenarLista() {
+        this.primero = mergeSort(this.primero);
+    }
+
+    public NodoHash sortedMerge(NodoHash a, NodoHash b) {
+        NodoHash resultado = null;
+        
+        if (a == null) {
+            return b;
+        }
+        if (b == null) {
+            return a;
+        }
+
+        if (a.getCount() >= b.getCount()) {
+            resultado = a;
+            resultado.setSiguienteLista(sortedMerge(a.getSiguienteLista(), b));
+        } else {
+            resultado = b;
+            resultado.setSiguienteLista(sortedMerge(a, b.getSiguienteLista()));
+
+        }
+        return resultado;
+    }
+
+    public NodoHash mergeSort(NodoHash h) {
+        
+        if (h == null || h.getSiguienteLista() == null) {
+            return h;
+        }
+
+        NodoHash mitad = getMitad(h);
+        NodoHash mitadSiguiente = mitad.getSiguienteLista();
+
+        mitad.setSiguienteLista(null);
+
+        NodoHash izq = mergeSort(h);
+
+        NodoHash der = mergeSort(mitadSiguiente);
+
+        NodoHash sortedlist = sortedMerge(izq, der);
+        return sortedlist;
+    }
+    
+    public static NodoHash getMitad(NodoHash primero) {
+        if (primero == null) {
+            return primero;
+        }
+
+        NodoHash slow = primero, fast = primero;
+
+        while (fast.getSiguienteLista() != null && fast.getSiguienteLista().getSiguienteLista() != null) {
+            slow = slow.getSiguienteLista();
+            fast = fast.getSiguienteLista().getSiguienteLista();
+        }
+        return slow;
+    }
+
     public String imprimirLista() {
-        int count = 0;
         String texto = "";
         if (esVacio()) {
-            System.out.println("La lista está vacía");
+            
 
         } else {
             NodoHash aux = primero;
-            for (int i = 0; i < tamano; i++) {
+            for (int i = 0; aux.getSiguienteLista() != null; i++) {
                 texto += "\"" + aux.getPalabra() + "\" : " + aux.getCount() + "\n";
-                count += aux.getCount();
 
                 aux = aux.getSiguienteLista();
 
             }
         }
-        System.out.println("");
-        System.out.println(count);
         return texto;
     }
-
 }

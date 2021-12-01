@@ -50,7 +50,7 @@ public class Principal extends javax.swing.JFrame {
         contarRep = new javax.swing.JButton();
         buscarPalabra = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        palabrasUsuales = new javax.swing.JButton();
         salir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -85,8 +85,13 @@ public class Principal extends javax.swing.JFrame {
         jButton4.setText("Verificar originalidad");
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 160, -1));
 
-        jButton5.setText("Palabras más usadas");
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 160, -1));
+        palabrasUsuales.setText("Palabras más usadas");
+        palabrasUsuales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                palabrasUsualesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(palabrasUsuales, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 160, -1));
 
         salir.setText("Salir");
         salir.addActionListener(new java.awt.event.ActionListener() {
@@ -107,8 +112,8 @@ public class Principal extends javax.swing.JFrame {
             archivo = true;
             String[] array = f.soloPalabrasArray(texto);
             for (int i = 0; i < array.length; i++) {
-                
-                hashTable.insertar(array[i].replace("\n", "").replace(" ", ""),lista);
+
+                hashTable.insertar(array[i].replace("\n", "").replace(" ", ""), lista);
             }
 
         } else {
@@ -120,10 +125,9 @@ public class Principal extends javax.swing.JFrame {
         if (archivo) {
 
             String repeticiones = lista.imprimirLista();
-            Repeticiones rep = new Repeticiones(repeticiones);
+            MostrarPalabras mostrar = new MostrarPalabras(repeticiones);
             lista.imprimirLista();
 
-            //JOptionPane.showMessageDialog(null, repeticiones);
         } else {
             JOptionPane.showMessageDialog(null, "No se ha cargado ningún documento");
         }
@@ -139,21 +143,32 @@ public class Principal extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "No se ha cargado ningún documento");
         }
-  
+
     }//GEN-LAST:event_buscarPalabraActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         dispose();
     }//GEN-LAST:event_salirActionPerformed
 
+    private void palabrasUsualesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_palabrasUsualesActionPerformed
+        if (archivo) {
+            lista.ordenarLista();
+            String masUsuales = lista.imprimirLista();
+            MostrarPalabras mostrar = new MostrarPalabras(masUsuales);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "No se ha cargado ningún documento");
+        }
+    }//GEN-LAST:event_palabrasUsualesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscarPalabra;
     private javax.swing.JButton contarRep;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton leerDocumento;
+    private javax.swing.JButton palabrasUsuales;
     private javax.swing.JButton salir;
     // End of variables declaration//GEN-END:variables
 }
