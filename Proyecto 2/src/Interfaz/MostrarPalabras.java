@@ -21,6 +21,8 @@ public class MostrarPalabras extends javax.swing.JFrame {
         areaTexto.setEditable(false);
         areaTexto.setText(texto);
         areaTexto.setCaretPosition(0);
+        areaTexto.setLineWrap(true);
+        areaTexto.setWrapStyleWord(true);
     }
 
     /**
@@ -46,6 +48,7 @@ public class MostrarPalabras extends javax.swing.JFrame {
         areaTexto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         areaTexto.setRows(5);
         areaTexto.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        areaTexto.setMargin(new java.awt.Insets(2, 10, 2, 10));
         jScrollPane1.setViewportView(areaTexto);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 470, 240));

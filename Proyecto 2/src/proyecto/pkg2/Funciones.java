@@ -33,7 +33,7 @@ public class Funciones {
                 BufferedReader br = new BufferedReader(fr);
                 while ((line = br.readLine()) != null) {
                     if (!line.isEmpty()) {
-                        txt += line + "\n";
+                        txt += line + " ";
                     }
 
                 }
@@ -44,6 +44,7 @@ public class Funciones {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al leer");
         }
+        txt = txt.replaceAll("\\s{2,}", " ").trim();
         return txt;
     }
     
@@ -51,8 +52,8 @@ public class Funciones {
 
     public String[] soloPalabrasArray(String texto) {
         
-        texto = texto.replace(",", "").replace(".", "").replace("(", "").replace(")", "").toLowerCase();
-        texto.replace('á', 'a').replace('é', 'e').replace('í', 'i').replace('ó', 'o').replace('ú', 'u');
+        texto = texto.replaceAll("[^A-Za-z0-9áéíóúÁÉÍÓÚüÜ ]","").toLowerCase();
+        texto.replace('á', 'a').replace('é', 'e').replace('í', 'i').replace('ó', 'o').replace('ú', 'u').replace("ü","u");
                
 
         String[] array = texto.split(" ");

@@ -49,9 +49,9 @@ public class Principal extends javax.swing.JFrame {
         leerDocumento = new javax.swing.JButton();
         contarRep = new javax.swing.JButton();
         buscarPalabra = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         palabrasUsuales = new javax.swing.JButton();
         salir = new javax.swing.JButton();
+        verificar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -82,9 +82,6 @@ public class Principal extends javax.swing.JFrame {
         });
         jPanel1.add(buscarPalabra, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 160, -1));
 
-        jButton4.setText("Verificar originalidad");
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 160, -1));
-
         palabrasUsuales.setText("Palabras más usadas");
         palabrasUsuales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,6 +97,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jPanel1.add(salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 160, -1));
+
+        verificar.setText("Verificar originalidad");
+        verificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verificarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(verificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 160, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 430));
 
@@ -161,14 +166,19 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_palabrasUsualesActionPerformed
 
+    private void verificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verificarActionPerformed
+        new VerificarOriginalidad().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_verificarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscarPalabra;
     private javax.swing.JButton contarRep;
-    private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton leerDocumento;
     private javax.swing.JButton palabrasUsuales;
     private javax.swing.JButton salir;
+    private javax.swing.JButton verificar;
     // End of variables declaration//GEN-END:variables
 }
