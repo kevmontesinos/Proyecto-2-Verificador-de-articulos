@@ -18,15 +18,17 @@ public class VerificarOriginalidad extends javax.swing.JFrame {
     String texto;
     boolean archivo;
     Funciones f;
+    Principal p;
 
     /**
      * Creates new form VerificarOriginalidad
      */
-    public VerificarOriginalidad() {
+    public VerificarOriginalidad(Principal p) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         f = new Funciones();
+        this.p = p;
         fragmento.setLineWrap(true);
         fragmento.setWrapStyleWord(true);
 
@@ -123,7 +125,7 @@ public class VerificarOriginalidad extends javax.swing.JFrame {
 
     private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
         dispose();
-        new Principal().setVisible(true);
+        p.setVisible(true);
     }//GEN-LAST:event_regresarActionPerformed
 
 

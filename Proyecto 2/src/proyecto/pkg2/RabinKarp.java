@@ -15,7 +15,7 @@ public class RabinKarp {
     String indicesTxt = "";
 
     public String indices(String patron, String texto) {
-        String ind = search(patron, texto.toLowerCase(), 101);
+        String ind = buscar(patron, texto.toLowerCase(), 101);
 
         if (!ind.isBlank() || !ind.isEmpty()) {
 
@@ -43,7 +43,7 @@ public class RabinKarp {
 
     }
 
-    public String search(String patron, String txt, int prim) {
+    public String buscar(String patron, String txt, int prim) {
         int M = patron.length();
         int N = txt.length();
         int i, j;

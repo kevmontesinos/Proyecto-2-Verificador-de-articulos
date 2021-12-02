@@ -128,7 +128,6 @@ public class Principal extends javax.swing.JFrame {
 
     private void contarRepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contarRepActionPerformed
         if (archivo) {
-
             String repeticiones = lista.imprimirLista();
             MostrarPalabras mostrar = new MostrarPalabras(repeticiones);
             lista.imprimirLista();
@@ -143,7 +142,12 @@ public class Principal extends javax.swing.JFrame {
 
             String palabra = JOptionPane.showInputDialog("Ingrese la palabra que quiere buscar: ");
             NodoHash buscado = hashTable.buscar(palabra);
-            JOptionPane.showMessageDialog(null, "\"" + buscado.getPalabra() + "\" : " + buscado.getCount());
+            if (buscado != null) {
+
+                JOptionPane.showMessageDialog(null, "\"" + buscado.getPalabra() + "\" : " + buscado.getCount());
+            } else {
+                JOptionPane.showMessageDialog(null, "La palabra no fue encontrada.");
+            }
 
         } else {
             JOptionPane.showMessageDialog(null, "No se ha cargado ningún documento");
@@ -167,8 +171,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_palabrasUsualesActionPerformed
 
     private void verificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verificarActionPerformed
-        new VerificarOriginalidad().setVisible(true);
-        dispose();
+        new VerificarOriginalidad(this).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_verificarActionPerformed
 
 

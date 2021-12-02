@@ -12,8 +12,7 @@ package proyecto.pkg2;
 public class HashTable {
 
     NodoHash[] tabla;
-    int tamano; //n primo, mientras más pequeño más colisiones pueden ocurrir
-    
+    int tamano; 
 
     public HashTable(int tamano) {
         this.tamano = tamano;
@@ -76,13 +75,16 @@ public class HashTable {
 
     public NodoHash buscar(String palabra) {
         int posicion = hashing(palabra);
-        NodoHash temp = this.tabla[posicion];
+        NodoHash temp = this.tabla[posicion];        
         boolean existe = false;
+        
         if (temp != null) {
             if (temp.getSiguiente() == null) {
-                existe = true;
+                if (temp.getPalabra().equals(palabra)){
+                    existe = true;
+                }
             } else {
-                while (temp.getSiguiente() != null && !existe) {
+                while (temp != null && !existe) {
                     if (temp.getPalabra().equals(palabra)) {
                         existe = true;
                     } else {
@@ -98,27 +100,25 @@ public class HashTable {
         }
     }
 
-//    public String repeticiones() {
-//        String texto = "";
-//        int cuenta = 0;
+//    public void repeticiones() {
+//
 //        for (int i = 0; i < tamano; i++) {
 //            if (this.tabla[i] != null) {
-//                texto += "\"" + this.tabla[i].getPalabra() + "\" : " + this.tabla[i].getCount() + "\n";
-//                cuenta += this.tabla[i].getCount();
-//                System.out.println(cuenta);
+//
+//                System.out.println(this.tabla[i].getPalabra() + "\" : " + this.tabla[i].getCount() + "\n");
+//
 //                NodoHash temp = this.tabla[i].getSiguiente();
 //                while (temp != null) {
-//                    texto += "*" + "\"" + temp.getPalabra()+ "\": " + temp.getCount() + "\n";
-//                    cuenta += this.tabla[i].getCount();
-//                    System.out.println(cuenta);
+//
+//                    System.out.println("*" + "\"" + temp.getPalabra() + "\": " + temp.getCount() + "\n");
+//
 //                    temp = temp.getSiguiente();
 //
 //                }
 //
 //            }
 //        }
-//        System.out.println("Cuenta " + cuenta);
-//        return texto;
+//
 //    }
 
 }
