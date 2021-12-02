@@ -6,14 +6,24 @@
 package proyecto.pkg2;
 
 /**
- *
- * @author Kevin
+ * Clase para el algoritmo de Rabin Karp de búsqueda de patrones
  */
 public class RabinKarp {
 
-    public final static int d = 256;
-    String indicesTxt = "";
+    //Campos de la clase
+    public final static int d = 256; //número total de caracteres en la tabla Ascii
+    String indicesTxt = ""; //String donde se guardará la información a retornar
 
+    /**
+     *
+     * Función que devuelve un string con la informacion de primero, el o los
+     * indices donde se encontraron coincidencias y luego, con marcas en el
+     * texto donde se obtuvieron las coincidencias
+     *
+     * @param patron patrón que se quiere buscar en el texto
+     * @param texto texto en donde se buscará el patron
+     * @return texto con los datos encontrados
+     */
     public String indices(String patron, String texto) {
         String ind = buscar(patron, texto.toLowerCase(), 101);
 
@@ -43,18 +53,22 @@ public class RabinKarp {
 
     }
 
+    /**
+     *
+     * Algoritmo de Rabin-Karp.
+     */
     public String buscar(String patron, String txt, int prim) {
         int M = patron.length();
         int N = txt.length();
-        int i, j;
         int p = 0; // hash para patron
         int t = 0; // hash para texto
         int h = 1;
 
+        int i, j;
+
         for (i = 0; i < M - 1; i++) {
             h = (h * d) % prim;
         }
-
 
         for (i = 0; i < M; i++) {
             p = (d * p + patron.charAt(i)) % prim;

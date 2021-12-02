@@ -7,7 +7,7 @@ package Interfaz;
 
 /**
  *
- * @author Kevin
+ * Ventana auxiliar para mostrar grandes cantidades de texto
  */
 public class MostrarPalabras extends javax.swing.JFrame {
 

@@ -11,7 +11,7 @@ import proyecto.pkg2.RabinKarp;
 
 /**
  *
- * @author Kevin
+ * Ventana secundaria para verificar la originalidad de un texto dado
  */
 public class VerificarOriginalidad extends javax.swing.JFrame {
 
@@ -106,9 +106,6 @@ public class VerificarOriginalidad extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontraron coincidencias.");
             }
-           
-            
-            
 
         }
     }//GEN-LAST:event_verificarActionPerformed

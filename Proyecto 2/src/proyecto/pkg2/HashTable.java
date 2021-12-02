@@ -7,13 +7,22 @@ package proyecto.pkg2;
  */
 /**
  *
- * @author Kevin
+ * Clase para la HashTable
+ *
  */
 public class HashTable {
 
+    //Campos de la clase
     NodoHash[] tabla;
-    int tamano; 
+    int tamano;
 
+    /**
+     *
+     * Constructor del HashTable
+     *
+     * @param tamano será un numero primo 10111
+     *
+     */
     public HashTable(int tamano) {
         this.tamano = tamano;
         this.tabla = new NodoHash[tamano];
@@ -22,6 +31,13 @@ public class HashTable {
         }
     }
 
+    /**
+     *
+     * Función hash
+     *
+     * @param llave en este caso, será la palabra
+     * @return entero correspondiente al valor hash
+     */
     public int hashing(String llave) {
         int valor = 0;
         int posicion = 1;
@@ -40,6 +56,14 @@ public class HashTable {
         return (valor % tamano);
     }
 
+    /**
+     *
+     * procedimiento para insertar
+     *
+     * @param palabra palabra a insertar
+     * @param lista lista enlazada con todas las palabras que se han ingresado
+     *
+     */
     public void insertar(String palabra, ListaEnlazada lista) {
         int posicion = hashing(palabra);
         boolean existe = false;
@@ -73,14 +97,23 @@ public class HashTable {
         }
     }
 
+    /**
+     *
+     * Funcion que devuelve un nodo correspondiente a la palabra que se pasa por
+     * parámetro, sacando el valor Hash se encuentra el nodo que se requiere y
+     * en caso de haber colisiones se recorre esa lista
+     *
+     * @param palabra palabra a buscar
+     * @return NodoHash correspondiente a la palabra ingresada
+     */
     public NodoHash buscar(String palabra) {
         int posicion = hashing(palabra);
-        NodoHash temp = this.tabla[posicion];        
+        NodoHash temp = this.tabla[posicion];
         boolean existe = false;
-        
+
         if (temp != null) {
             if (temp.getSiguiente() == null) {
-                if (temp.getPalabra().equals(palabra)){
+                if (temp.getPalabra().equals(palabra)) {
                     existe = true;
                 }
             } else {
@@ -99,26 +132,5 @@ public class HashTable {
             return null;
         }
     }
-
-//    public void repeticiones() {
-//
-//        for (int i = 0; i < tamano; i++) {
-//            if (this.tabla[i] != null) {
-//
-//                System.out.println(this.tabla[i].getPalabra() + "\" : " + this.tabla[i].getCount() + "\n");
-//
-//                NodoHash temp = this.tabla[i].getSiguiente();
-//                while (temp != null) {
-//
-//                    System.out.println("*" + "\"" + temp.getPalabra() + "\": " + temp.getCount() + "\n");
-//
-//                    temp = temp.getSiguiente();
-//
-//                }
-//
-//            }
-//        }
-//
-//    }
 
 }

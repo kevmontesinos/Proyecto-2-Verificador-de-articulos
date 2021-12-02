@@ -1,21 +1,19 @@
 package proyecto.pkg2;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
- * @author Kevin
+ * Clase para el NodoHash (único nodo que usa el proyecto) utilizado para el
+ * HashTable y la lista enlazada
  */
 public class NodoHash {
 
-    private NodoHash siguiente;
-    private NodoHash siguienteLista;
+    //Campos de la clase
+    private NodoHash siguiente; //apuntador a siguiente en la hash table, en caso de haber colisiones
+    private NodoHash siguienteLista; //apuntador siguiente en la lista
     private String palabra;
     private int count;
 
+    //Constructor de la clase
     public NodoHash(String palabra) {
         this.siguiente = null;
         this.palabra = palabra;
@@ -53,6 +51,5 @@ public class NodoHash {
     public void setSiguienteLista(NodoHash siguienteLista) {
         this.siguienteLista = siguienteLista;
     }
-        
 
 }

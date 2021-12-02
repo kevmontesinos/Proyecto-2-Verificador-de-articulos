@@ -13,7 +13,7 @@ import proyecto.pkg2.NodoHash;
 
 /**
  *
- * @author Kevin
+ * Ventana que contendrá todas las opciones principales.
  */
 public class Principal extends javax.swing.JFrame {
 
@@ -52,6 +52,7 @@ public class Principal extends javax.swing.JFrame {
         palabrasUsuales = new javax.swing.JButton();
         salir = new javax.swing.JButton();
         verificar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -106,6 +107,10 @@ public class Principal extends javax.swing.JFrame {
         });
         jPanel1.add(verificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 160, -1));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setText("Verificador de Artículos");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 430));
 
         pack();
@@ -141,7 +146,7 @@ public class Principal extends javax.swing.JFrame {
         if (archivo) {
 
             String palabra = JOptionPane.showInputDialog("Ingrese la palabra que quiere buscar: ");
-            NodoHash buscado = hashTable.buscar(palabra);
+            NodoHash buscado = hashTable.buscar(palabra.toLowerCase());
             if (buscado != null) {
 
                 JOptionPane.showMessageDialog(null, "\"" + buscado.getPalabra() + "\" : " + buscado.getCount());
@@ -179,6 +184,7 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscarPalabra;
     private javax.swing.JButton contarRep;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton leerDocumento;
     private javax.swing.JButton palabrasUsuales;
